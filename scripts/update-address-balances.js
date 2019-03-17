@@ -4,8 +4,11 @@ var got = require("got");
 // Insight API endpoint
 var insightAPI = "http://insight.bithereum.network/insight-api";
 
+// Amount of time to delay requests
+var INSIGHT_BREATHER = 500 // milliseconds
+
 // Check balance interval
-var CHECKBALANCE_INTERVAL = 0.1 * (60 * 1000)
+var CHECKBALANCE_INTERVAL = 5 * (60 * 1000)
 
 // Initialize MySQL
 var mysql      = require('mysql');
@@ -55,7 +58,9 @@ let updateAddressBalance = function(addresses) {
                 .then(function(balance) {
                       console.log("UPDATED:", address, "=", balance);
                       query("UPDATE bth_addresses SET balance = ?, updated_on = NOW() WHERE address = ?", [balance,address]);
-                      fetchAndStoreBalances(addresses, ++fetchCount, callback);
+                      setTimeout(function() {
+                        fetchAndStoreBalances(addresses, ++fetchCount, callback);
+                      },INSIGHT_BREATHER);
                 })
             }
         };

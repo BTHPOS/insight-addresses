@@ -4,6 +4,9 @@ var got = require("got");
 // Insight API endpoint
 var insightAPI = "http://insight.bithereum.network/insight-api";
 
+// Amount of time to delay requests
+var INSIGHT_BREATHER = 500 // milliseconds
+
 // Starting block to fetch addresses from
 var blockFrom = 0;
 
@@ -109,11 +112,15 @@ let getAddressesFromTransaction = function(txids, addressesByTransactions, _reso
 
             // If we have reached the end of this transactions batch, call the original calling function
             if (Object.keys(addressesByTransactions).length === txids.length) {
-                _resolve(addressesByTransactions);
+                setTimeout(function() {
+                  _resolve(addressesByTransactions);
+                },INSIGHT_BREATHER);
             }
             // Otherwise, let's search for my addresses in the next transaction
             else {
-              getAddressesFromTransaction(txids, addressesByTransactions, _resolve, _reject);
+              setTimeout(function() {
+                  getAddressesFromTransaction(txids, addressesByTransactions, _resolve, _reject);
+              },INSIGHT_BREATHER);
             }
         })
         .catch(function() {
@@ -121,11 +128,15 @@ let getAddressesFromTransaction = function(txids, addressesByTransactions, _reso
             // If we have reached the end of this transactions batch, call the original calling function
             if (Object.keys(addressesByTransactions).length === txids.length) {
                 addressesByTransactions = addressesByTransactions ? addressesByTransactions : {};
-                _resolve(addressesByTransactions);
+                setTimeout(function() {
+                  _resolve(addressesByTransactions);
+                },INSIGHT_BREATHER);
             }
             // Otherwise, let's search for my addresses in the next transaction
             else {
-                getAddressesFromTransaction(txids, addressesByTransactions, _resolve, _reject);
+                setTimeout(function() {
+                  getAddressesFromTransaction(txids, addressesByTransactions, _resolve, _reject);
+                },INSIGHT_BREATHER);
             }
         })
   });
