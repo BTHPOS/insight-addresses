@@ -1,0 +1,29 @@
+{
+  "name": "@bithereum/insight-addresses",
+  "version": "1.0.0",
+  "description": "Scrapes addresses from every block using insight",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/BTHPOS/insight-addresses.git"
+  },
+  "keywords": [
+    "bithereum",
+    "insights",
+    "bitcore",
+    "bitcoin"
+  ],
+  "author": "Dondrey Taylor",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/BTHPOS/insight-addresses/issues"
+  },
+  "homepage": "https://github.com/BTHPOS/insight-addresses#readme",
+  "dependencies": {
+    "got": "^9.6.0",
+    "mysql": "^2.16.0"
+  }
+}
