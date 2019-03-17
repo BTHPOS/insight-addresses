@@ -8,7 +8,7 @@ var insightAPI = "http://insight.bithereum.network/insight-api";
 var blockFrom = 0;
 
 // Ending block to fetch addresses to
-var blockTo = 20;
+var blockTo = 100;
 
 // Initialize MySQL
 var mysql      = require('mysql');
