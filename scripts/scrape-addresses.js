@@ -5,7 +5,7 @@ var got = require("got");
 var insightAPI = "http://insight.bithereum.network/insight-api";
 
 // Amount of time to delay requests
-var INSIGHT_BREATHER = 500 // milliseconds
+var INSIGHT_BREATHER = 200 // milliseconds
 
 // Starting block to fetch addresses from
 var blockFrom = 0;
