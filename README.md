@@ -19,7 +19,6 @@ Be sure that rate limitting is disabled on your bitcore node, otherwise your req
      "insight-api": {
        "disableRateLimiter": true
      }
-     ...
 ```
 If you are using your own insight explorer, be sure to update the `insightAPI` constant located at the top of the file to point to your own instance.
 ```JavaScript
